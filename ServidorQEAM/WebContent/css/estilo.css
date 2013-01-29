@@ -1,0 +1,19 @@
+legend {
+	font-size: x-large;
+}
+
+fieldset {
+	text-align: center;
+}
+
+body{
+	
+	width: 760px;
+margin:0 auto;         
+text-align:left; 
+}
+
+form{
+	padding: 2px;
+    background-color: #eee;
+}
