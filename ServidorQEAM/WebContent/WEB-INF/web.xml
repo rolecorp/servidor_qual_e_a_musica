@@ -19,4 +19,16 @@
     <servlet-name>ServletJSON</servlet-name>
     <url-pattern>/servletJSON</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ServletRequisicaoGet</display-name>
+    <servlet-name>ServletRequisicaoGet</servlet-name>
+    <servlet-class>es.ufc.qualeamusica.servlet.ServletRequisicaoGet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletRequisicaoGet</servlet-name>
+    <url-pattern>/servletRequisicaoGet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

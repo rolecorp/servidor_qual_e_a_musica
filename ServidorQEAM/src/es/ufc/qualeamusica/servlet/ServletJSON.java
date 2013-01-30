@@ -1,7 +1,9 @@
 package es.ufc.qualeamusica.servlet;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,38 +12,54 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.ufc.qualeamusica.dao.RankingGeralDAO;
 import es.ufc.qualeamusica.model.RankingGeral;
+import es.ufc.qualeamusica.webservice.DataSerializer;
 
-
-public class ServletJSON extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-   
-    public ServletJSON() {
-        super();
-    }
-
+public class ServletJSON extends HttpServlet{
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Chamou o Servlet");
-		String nome = request.getParameter("nome");
-		String pontuacao = request.getParameter("pontuacao");
-		double pontuacaoDouble = Double.parseDouble(pontuacao);
-		
-		RankingGeral ranking = new RankingGeral();
-		ranking.setNomeUsuario(nome);
-		ranking.setPontuacao(pontuacaoDouble);
-		
-		RankingGeralDAO rgdao = new RankingGeralDAO();
-		rgdao.cadastrar(ranking);
-		System.out.println("CADASTROU");
-		PrintWriter out = response.getWriter();
-        out.println("Pontuação enviada com sucesso!!!");
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)	throws ServletException, IOException {		
+		this.doGet(req, resp);
 		
 	}
 
+	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Processando requisição - Front Controller UM");
+		
+//		String requestData = processRequest(request);	 /* A String JSOn enviada pelo dispositivo móvel */	
+//		System.out.println("Request Data" + requestData);
+		
+//		RankingGeral rankingGeral = DataSerializer.getInstance().converterParaRankingGeral(requestData);
+//		rankingGeral.setIdade(25);
+		RankingGeralDAO dao = new RankingGeralDAO();
+		List<RankingGeral> rankingGeral = dao.listarTodos();
+		
+		String responseData = DataSerializer.getInstance().converterParaJson(rankingGeral);   
+
+		 PrintWriter out = response.getWriter();
+		 out.write(responseData);
+	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private String processRequest(HttpServletRequest request) {
+		 StringBuffer jb = new StringBuffer();
+		  String line = null;
+		  try {
+		    BufferedReader reader = request.getReader();
+		    while ((line = reader.readLine()) != null)
+		      jb.append(line);
+		  } catch (Exception e) { e.printStackTrace(); }
+		  
+		  return jb.toString();
+
+	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+			
+		processRequest(req, resp);
 	
 	}
 
+
+
+	
 }
