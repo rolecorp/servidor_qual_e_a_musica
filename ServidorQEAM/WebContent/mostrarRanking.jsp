@@ -1,5 +1,5 @@
-<%@page import="es.ufc.qualeamusica.dao.RankingGeralDAO"%>
-<%@page import="es.ufc.qualeamusica.model.RankingGeral"%>
+<%@page import="es.ufc.qualeamusica.dao.RankingDAO"%>
+<%@page import="es.ufc.qualeamusica.model.Ranking"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,10 +20,10 @@
 				<th>Pontuação</th>
 			</tr>
 			<%
-			RankingGeralDAO rGDao = new RankingGeralDAO();
-				List<RankingGeral> listaFeriados =  rGDao.listarTodos();
-				for (int i = 0; i < listaFeriados.size(); i++) {
-					RankingGeral ranking = listaFeriados.get(i);
+				RankingDAO rGDao = new RankingDAO();
+						List<Ranking> listaFeriados =  rGDao.listarTodos();
+						for (int i = 0; i < listaFeriados.size(); i++) {
+							Ranking ranking = listaFeriados.get(i);
 			%>
 			<tr>
 				<td><%=ranking.getNomeUsuario()%></td>

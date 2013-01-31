@@ -8,19 +8,19 @@ import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
 
-import es.ufc.qualeamusica.model.RankingGeral;
+import es.ufc.qualeamusica.model.Ranking;
 import es.ufc.qualeamusica.persistencia.CriarTabelas;
 
 
-public class RankingGeralDAO {
+public class RankingDAO {
 	
-public ArrayList<RankingGeral> listarTodos(){
+public ArrayList<Ranking> listarTodos(){
 		
 		Session sessao = CriarTabelas.prepararSessao();
 		Transaction trasaction = sessao.beginTransaction();
 			
-		Criteria criteria = sessao.createCriteria(RankingGeral.class);
-		ArrayList<RankingGeral> rankingGeral =  (ArrayList<RankingGeral>) criteria.list();
+		Criteria criteria = sessao.createCriteria(Ranking.class);
+		ArrayList<Ranking> rankingGeral =  (ArrayList<Ranking>) criteria.list();
 		
 		trasaction.commit();
 		sessao.close();
@@ -28,11 +28,11 @@ public ArrayList<RankingGeral> listarTodos(){
 		return rankingGeral;
 	}
 	
-	public void deletar(RankingGeral rankingGeral){
+	public void deletar(Ranking rankingGeral){
 		Session sessao = CriarTabelas.prepararSessao();
 		Transaction trasaction = sessao.beginTransaction();
 		
-		RankingGeral reservaCarregada = (RankingGeral) sessao.load(RankingGeral.class, rankingGeral.getId());
+		Ranking reservaCarregada = (Ranking) sessao.load(Ranking.class, rankingGeral.getId());
 		
 		sessao.delete(reservaCarregada);
 		
@@ -40,7 +40,7 @@ public ArrayList<RankingGeral> listarTodos(){
 		sessao.close();
 	}
 	
-	public void cadastrar(RankingGeral rankingGeral){
+	public void cadastrar(Ranking rankingGeral){
 		
 		Session sessao = CriarTabelas.prepararSessao();
 		try{
@@ -58,11 +58,11 @@ public ArrayList<RankingGeral> listarTodos(){
 		}
 	}
 	
-	public void atualizar(RankingGeral novoRanking){
+	public void atualizar(Ranking novoRanking){
 		Session sessao = CriarTabelas.prepararSessao();
 		Transaction trasaction = sessao.beginTransaction();
 		
-		RankingGeral rankingCarregada = (RankingGeral) sessao.load(RankingGeral.class, novoRanking.getId());
+		Ranking rankingCarregada = (Ranking) sessao.load(Ranking.class, novoRanking.getId());
 				
 		rankingCarregada = novoRanking;
 		
@@ -72,14 +72,14 @@ public ArrayList<RankingGeral> listarTodos(){
 		sessao.close();
 	}
 	
-	public RankingGeral buscarRankingPor(Long id){
+	public Ranking buscarRankingPor(Long id){
 		Session sessao = CriarTabelas.prepararSessao();
 		Transaction trasaction = sessao.beginTransaction();
 			
-		Criteria criteria = sessao.createCriteria(RankingGeral.class);
+		Criteria criteria = sessao.createCriteria(Ranking.class);
 		criteria.add(Restrictions.eq("id", id));
 		
-		RankingGeral rankingGeral =  (RankingGeral) criteria.uniqueResult();
+		Ranking rankingGeral =  (Ranking) criteria.uniqueResult();
 		
 		trasaction.commit();
 		sessao.close();

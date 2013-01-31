@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.ufc.qualeamusica.dao.RankingGeralDAO;
-import es.ufc.qualeamusica.model.RankingGeral;
+import es.ufc.qualeamusica.dao.RankingDAO;
+import es.ufc.qualeamusica.model.Ranking;
 import es.ufc.qualeamusica.webservice.DataSerializer;
 
 
@@ -29,11 +29,11 @@ public class ServletRequisicaoGet extends HttpServlet {
 		String pontuacao = request.getParameter("pontuacao");
 		double pontuacaoDouble = Double.parseDouble(pontuacao);
 		
-		RankingGeral ranking = new RankingGeral();
+		Ranking ranking = new Ranking();
 		ranking.setNomeUsuario(nome);
 		ranking.setPontuacao(pontuacaoDouble);
 		
-		RankingGeralDAO rgdao = new RankingGeralDAO();
+		RankingDAO rgdao = new RankingDAO();
 		rgdao.cadastrar(ranking);
 		System.out.println("CADASTROU");
 		PrintWriter out = response.getWriter();

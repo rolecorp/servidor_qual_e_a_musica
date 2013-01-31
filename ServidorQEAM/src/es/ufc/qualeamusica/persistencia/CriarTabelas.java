@@ -8,7 +8,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.classic.Session;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
-import es.ufc.qualeamusica.model.RankingGeral;
+import es.ufc.qualeamusica.model.Ranking;
 
 public class CriarTabelas {
 	
@@ -48,7 +48,7 @@ public class CriarTabelas {
 		List<Class<? extends Object>> classes = new ArrayList<Class<? extends Object>>();
 		
 		//classes.add(Usuario.class);
-		classes.add(RankingGeral.class);
+		classes.add(Ranking.class);
 		
 		return classes;
 	}

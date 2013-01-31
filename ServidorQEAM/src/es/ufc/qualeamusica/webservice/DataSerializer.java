@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize.Inclusion;
 
-import es.ufc.qualeamusica.model.RankingGeral;
+import es.ufc.qualeamusica.model.Ranking;
 
 
 
@@ -39,14 +39,14 @@ public class DataSerializer {
 //		return (T) objectMapper.readValue(json, targetClass);	
 //	}
 	
-	public String converterParaJson(List<RankingGeral> r) throws JsonGenerationException, JsonMappingException, IOException {
+	public String converterParaJson(List<Ranking> r) throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper(); //ObjectMapper é uma classe da biblioteca Jackson
 		return mapper.writeValueAsString(r); //Este metodo irá retornar o JSON da variável "p".
 	}
 	
-	public RankingGeral converterParaRankingGeral(String json) throws JsonGenerationException, JsonMappingException, IOException {
+	public Ranking converterParaRankingGeral(String json) throws JsonGenerationException, JsonMappingException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
-		return mapper.readValue(json, RankingGeral.class); //Método utilizado para ler o json e retornar a instância da classe.
+		return mapper.readValue(json, Ranking.class); //Método utilizado para ler o json e retornar a instância da classe.
 	}
 
 }

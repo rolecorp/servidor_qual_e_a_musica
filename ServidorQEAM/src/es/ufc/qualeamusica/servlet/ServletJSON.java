@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import es.ufc.qualeamusica.dao.RankingGeralDAO;
-import es.ufc.qualeamusica.model.RankingGeral;
+import es.ufc.qualeamusica.dao.RankingDAO;
+import es.ufc.qualeamusica.model.Ranking;
 import es.ufc.qualeamusica.webservice.DataSerializer;
 
 public class ServletJSON extends HttpServlet{
@@ -30,8 +30,8 @@ public class ServletJSON extends HttpServlet{
 		
 //		RankingGeral rankingGeral = DataSerializer.getInstance().converterParaRankingGeral(requestData);
 //		rankingGeral.setIdade(25);
-		RankingGeralDAO dao = new RankingGeralDAO();
-		List<RankingGeral> rankingGeral = dao.listarTodos();
+		RankingDAO dao = new RankingDAO();
+		List<Ranking> rankingGeral = dao.listarTodos();
 		
 		String responseData = DataSerializer.getInstance().converterParaJson(rankingGeral);   
 
